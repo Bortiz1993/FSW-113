@@ -8,11 +8,7 @@ let minGrade = aryGrades.reduce((a, b) => { return Math.min(a, b)})
 
 let maxGrade = aryGrades.reduce((a, b) => { return Math.max(a, b)})
 
-let mean = sumGrades(aryGrades) / aryGrades.length
-
-let range = maxGrade - minGrade 
-
-let gradeSlice = range / 5
+var mean = sumGrades(aryGrades) / aryGrades.length, gradeSlice = (maxGrade - minGrade) / 5;
 
 function applyBell(grade, index, ary) {
     switch (true) {

@@ -21,13 +21,13 @@ const parts = [
     { partNbr: 'WEYPU3Z', partDescr: 'Mumpenflipper', aisle: 'E3', qty: 1}
 ]
 //First Problem: // use maybe for loop/ or use .Find method or .forEach.
-parts.forEach(function(list){
+parts.find(function(list){
     console.log(`qty: ${list.qty} partNumber: ${list.partNbr}`);
 });
 console.log("*******")
 
 //second problem:
-parts.forEach(function(list){
+ const filtered = parts.filter(function(list){
     if (list.aisle === 'B3'){
         console.log("Aisle: " + list.aisle + '; requires special packaging')
     }
@@ -35,10 +35,11 @@ parts.forEach(function(list){
         console.log("Aisle: " + list.aisle + "; Does not require special packaging")
     }
 });
+
 console.log("*******")
 //Third problem:
 parts.forEach(function(list){
-    if (list.partDescr === "Shreckendwammer" && list.aisle === 'J4'){
+    if (list.partDescr === "Shreckendwammer" || list.aisle === 'J4'){
         console.log("Part description: " + list.partDescr + " aisle: " + list.aisle + '; You will need a pair of gloves from the storeroom!')
     }
     else {

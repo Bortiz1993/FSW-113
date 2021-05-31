@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <head>
+            <style>
+                .queryWrapper {
+                    border: black 2px solid;
+                    border-radius: 8px;
+                    padding: 5px;
+                    width: 400px;
+                    display: grid;
+                    grid-template-columns: 80px 90px 100px 40px 90px;
+                    margin: 0 auto;
+                }
+                .dataWrapper {
+                    border-radius: 8px;
+                    background-color: silver;
+                    padding: 5px;
+                    width: 400px;
+                    display: grid;
+                    grid-template-columns: 200px 200px;
+                    margin: 0 auto;
+                }
+                .dataCellLabel {
+                    text-align: center;
+                    padding: 5px;
+                    font-weight: 700;
+                }
+                .dataCell {
+                    text-align: center;
+                    padding: 5px;
+                }
+                .footer {
+                    width: 400px;
+                    margin: 0 auto;
+                    text-align: center;
+                }
+            </style>
+        </head>
+    </head>
+    <body>
+        <h1 style='text-align:center;' id='title'>Star Wars Data Checker</h1>
+        <div class='queryWrapper'>
+            <div>Query Type:</div>
+            <div>
+                <select id='queryType'>
+                    <option value='people' id="People">People</option>
+                    <option value='planets' id="Planets">Planets</option>
+                    <option value='starships' id="Starships">Starships</option>
+                </select>
+            </div>
+            <div>Item Number:</div>
+            <div>
+                <input style='width:25px' id='itemID' />
+            </div>
+            <div>
+                <button id='fetchButton' onclick="getItem(
+                document.querySelector('#People').value,
+                document.querySelector('#Planets').value,
+                document.querySelector('#Starships').value
+                
+                )">Fetch Data</button>
+            </div>
+        </div>
+
+        <br /><br />
+
+        <div id='ResponseData' class='dataWrapper'>
+            <div class='dataCellLabel' id='dataLabel1'></div>
+            <div class='dataCell' id='dataValue1'></div>
+            <div class='dataCellLabel' id='dataLabel2'></div>
+            <div class='dataCell' id='dataValue2'></div>
+        </div>
+
+        <br /><br />
+        
+        <div class='footer'>
+            <hr />
+            <a href='https://swapi.dev/api/'  target='_new'>Data courtesy of Star War API</a>
+        </div>
+
+        <script charset='utf-8'>
+            let itemID = document.getElementById("itemID")
+            console.log(itemID.value)
+
+            function getItem() {
+             var itemIDValue = itemID.value
+
+              var queryType = document.getElementById("queryType")
+              console.log(queryType.value)
+
+              var queryTypeValue = queryType.value
+
+                fetch(`https://swapi.dev/api/${queryTypeValue}/${itemIDValue}`)
+                .then(function (response) {
+
+                    console.log(response);
+                    return response.json();
+                    console.log(response)
+            
+                })
+                .then(function(json){
+                    console.log(json)
+                    updateInfo(json)
+                })
+                .catch(function (err) {
+                    console.warn(err)
+                })
+            }
+
+        function updateInfo(data) {     
+        if (( updatePeople = data.name) && (updatePeople2 = data.eye_color)){
+            document.querySelector('#dataLabel1').innerText = "People:"
+            document.querySelector('#dataValue1').innerText = updatePeople
+            document.querySelector('#dataLabel2').innerText = "Eye color:"
+            document.querySelector('#dataValue2').innerText = updatePeople2
+         }
+          if ((updatePlanets = data.name) && (updatePlanets2 = data.climate)){
+             document.querySelector('#dataLabel1').innerText = "Planets:"
+             document.querySelector('#dataValue1').innerText = updatePlanets
+             document.querySelector('#dataLabel2').innerText = "Climate:"
+             document.querySelector('#dataValue2').innerText = updatePlanets2
+         
+        }
+           if ((starships = data.name) && (starships2 = data.manufacturer)){
+            document.querySelector('#dataLabel1').innerText = "Starships:"
+            document.querySelector('#dataValue1').innerText = starships
+            document.querySelector('#dataLabel2').innerText = "Manufacturer:"
+            document.querySelector('#dataValue2').innerText = starships2
+        }
+        }
+    
+        </script>
+    </body>
+</html>

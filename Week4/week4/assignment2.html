@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel='stylesheet' href='style.css'>
+    </head>
+<body>
+<p style='text-align:center;'>Please fill in all the programming languages you know</p>
+<div class='wrapper'>
+
+    <div><input style='width:90%' id='lang0' /></div>
+    <div><input style='width:90%' id='lang1' /></div>
+
+    <div><input style='width:90%' id='lang2' /></div>
+    <div><input style='width:90%' id='lang3' /></div>
+
+    <div><input style='width:90%' id='lang4' /></div>
+    <div><input style='width:90%' id='lang5' /></div>
+
+    <div><input style='width:90%' id='lang6' /></div>
+    <div><input style='width:90%' id='lang7' /></div>
+
+    <div class='spanner' style="text-align: right; padding: 10px;">
+        <button id='submit' onclick="chkLang(
+            'JavaScript',
+            document.querySelector('#lang0').value,
+            document.querySelector('#lang1').value,
+            document.querySelector('#lang2').value,
+            document.querySelector('#lang3').value,
+            document.querySelector('#lang4').value,
+            document.querySelector('#lang5').value,
+            document.querySelector('#lang6').value,
+            document.querySelector('#lang7').value,
+
+        )">Submit</button>
+    </div>
+
+</div>
+
+<br /><br />
+
+<div id='TestResult' class='text'></div>
+
+<script src='assignment2.js'></script>
+
+</body>
+</html>
